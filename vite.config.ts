@@ -5,14 +5,26 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: 8080,
-  },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+    // Important for correct MIME types on many hosts
+    build: {
+        target: "esnext",
+        outDir: "dist",
+        assetsDir: "assets",
     },
-  },
+
+    server: {
+        host: "::",
+        port: 8080,
+    },
+
+    plugins: [
+        react(),
+        mode === "development" && componentTagger(),
+    ].filter(Boolean),
+
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
+        },
+    },
 }));
