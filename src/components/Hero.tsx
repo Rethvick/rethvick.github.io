@@ -113,7 +113,7 @@ export const Hero = () => {
               <MagneticButton strength={0.3}>
                 <button
                   onClick={() => scrollToSection("projects")}
-                  className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold rounded-full gradient-primary text-primary-foreground hover:opacity-90 transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+                  className="inline-flex items-center justify-center h-11 px-7 text-sm font-semibold rounded-lg gradient-primary text-primary-foreground hover:opacity-90 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/25"
                 >
                   View My Work
                 </button>
@@ -121,7 +121,7 @@ export const Hero = () => {
               <MagneticButton strength={0.3}>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold rounded-full border-2 border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all backdrop-blur-sm"
+                  className="inline-flex items-center justify-center h-11 px-7 text-sm font-semibold rounded-lg border border-primary/40 text-foreground bg-white/5 hover:bg-primary/10 hover:border-primary transition-all hover:scale-[1.03] backdrop-blur-sm"
                 >
                   Contact Me
                 </button>

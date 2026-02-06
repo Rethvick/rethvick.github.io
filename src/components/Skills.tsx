@@ -86,7 +86,10 @@ export const Skills = () => {
             transition={{ delay: 0.3, duration: 0.6 }} />
         </div>
 
-        <div className="mb-12"><LogoCloud logos={techLogos} speed={25} className="py-4" /></div>
+        {/* Logo cloud breaks out of container to go edge-to-edge */}
+        <div className="mb-12 -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-[calc((100vw-72rem)/2+2rem)]">
+          <LogoCloud logos={techLogos} speed={25} className="py-4" />
+        </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {skillCategories.map((category, index) => (
