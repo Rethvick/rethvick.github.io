@@ -42,6 +42,8 @@ export const Projects = () => {
         { label: "BIEN Data", url: "https://biendata.org" },
         { label: "TNRS", url: "https://tnrs.biendata.org" },
         { label: "GNRS", url: "https://gnrs.biendata.org" },
+        { label: "NSR", url: "https://nsr.biendata.org" },
+        { label: "GVS", url: "https://gvs.biendata.org" },
       ],
     },
   ];
@@ -95,10 +97,11 @@ export const Projects = () => {
                       ))}
                     </div>
                     {project.links && (
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-3 relative z-50">
                         {project.links.map((link, i) => (
                           <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-primary/30 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300">
+                            onClick={(e) => { e.stopPropagation(); window.open(link.url, '_blank', 'noopener,noreferrer'); }}
+                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-primary/30 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300 cursor-pointer pointer-events-auto">
                             <ExternalLink className="w-4 h-4" />{link.label}
                           </a>
                         ))}

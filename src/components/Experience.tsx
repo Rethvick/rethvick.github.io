@@ -10,11 +10,10 @@ export const Experience = () => {
       location: "Tucson, AZ",
       period: "Jan 2024 – Dec 2025",
       achievements: [
-        { text: "Spearheaded the backend and data architecture for", num: 5, suffix: " major research platforms", rest: ", serving", num2: 134000, suffix2: "+ global researchers", rest2: " with 99.9% uptime" },
-        { text: "Developed high-throughput RESTful inference APIs handling massive geospatial datasets, utilizing async processing for real-time model queries" },
-        { text: "Overhauled critical query paths and implemented vector-based indexing strategies, achieving a", num: 40, suffix: "% reduction in latency" },
-        { text: "Established robust ETL pipelines integrating", num: 50, suffix: "+ heterogeneous global datasets", rest: " into a unified Knowledge Graph" },
-        { text: "Implemented automated Python-based testing suites, resolving", num: 35, suffix: "% of data inconsistencies", rest: " pre-deployment" },
+        { label: "Enterprise Backend Architecture", text: "Architected the core backend infrastructure for 5 mission-critical research platforms serving", num: 134000, suffix: "+ global researchers", rest: ". Engineered high-availability systems (99.9% uptime) supporting predictive modeling for the BIEN ecosystem." },
+        { label: "Critical Data Recovery & Pipeline Engineering", text: "Engineered a fault-tolerant ingestion engine to resolve catastrophic data truncation issues in the World Checklist of Vascular Plants (WCVP). Diagnosed complex encoding failures and restored", num: 1.85, suffix: " million missing records", rest: ", achieving a", num2: 1400, suffix2: "% increase", rest2: " in dataset completeness.", decimals: 2 },
+        { label: "Database Optimization & Spatial Indexing", text: "Overhauled legacy PostgreSQL/PostGIS schemas by implementing strict type-enforcement strategies and composite spatial indexes. Eliminated expensive type-casting overhead in multi-million row joins, reducing query execution time by", num: 40, suffix: "%." },
+        { label: "Automated Knowledge Graph Construction", text: "Orchestrated multi-agent ETL pipelines integrating", num: 50, suffix: "+ heterogeneous global datasets", rest: " into a unified Knowledge Graph. Implemented semantic validation agents that proactively resolved", num2: 35, suffix2: "% of data inconsistencies", rest2: " prior to production deployment." },
       ],
       links: [
         { label: "BIEN", url: "https://biendata.org" },
@@ -32,12 +31,14 @@ export const Experience = () => {
       type: "R Package (CRAN)",
       year: "2025",
       description: "Authored core functionality for accessing species range maps, optimizing core C++ extensions to handle millions of coordinate points efficiently.",
+      url: "https://cran.r-project.org/web/packages/OpenRange/index.html",
     },
     {
       title: "GVS: Geo Validation",
       type: "R Package (CRAN)",
       year: "2024",
       description: "Formulated algorithms to validate geospatial coordinates in large datasets, enabling rapid validation for scientific research.",
+      url: "https://cran.r-project.org/web/packages/GVS/index.html",
     },
   ];
 
@@ -100,17 +101,18 @@ export const Experience = () => {
                     <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /><span>{exp.location}</span></div>
                     <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /><span>{exp.period}</span></div>
                   </div>
-                  <ul className="space-y-3 mb-4">
+                  <ul className="space-y-4 mb-4">
                     {exp.achievements.map((a, i) => (
                       <motion.li key={i} className="flex gap-3 text-muted-foreground"
                         initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                         <span className="text-primary mt-1 flex-shrink-0">▹</span>
                         <span>
+                          {a.label && <span className="text-foreground font-semibold">{a.label}: </span>}
                           {a.num !== undefined ? (
                             <>
                               {a.text}{" "}
-                              <span className="text-primary font-semibold"><CountUp end={a.num} duration={2} separator="," />{a.suffix}</span>
+                              <span className="text-primary font-semibold"><CountUp end={a.num} duration={2} separator="," decimals={a.decimals || 0} />{a.suffix}</span>
                               {a.num2 !== undefined ? (
                                 <>{a.rest}{" "}<span className="text-primary font-semibold"><CountUp end={a.num2} duration={2.5} separator="," />{a.suffix2}</span>{a.rest2}</>
                               ) : a.rest}
@@ -120,12 +122,15 @@ export const Experience = () => {
                       </motion.li>
                     ))}
                   </ul>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex items-center flex-wrap gap-3">
+                    <span className="text-foreground font-semibold text-sm flex items-center gap-2">
+                      <span className="text-primary">▹</span> Live Ecosystem Deployments:
+                    </span>
                     {exp.links.map((link, i) => (
                       <motion.a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-primary hover:underline hover:text-primary/80 transition-colors"
-                        whileHover={{ x: 3 }}>
-                        <ExternalLink className="w-4 h-4" />{link.label}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium text-primary rounded-md border border-primary/20 hover:bg-primary/10 hover:border-primary/40 transition-all"
+                        whileHover={{ scale: 1.05 }}>
+                        <ExternalLink className="w-3.5 h-3.5" />{link.label}
                       </motion.a>
                     ))}
                   </div>
@@ -151,7 +156,14 @@ export const Experience = () => {
                     <span className="text-primary text-sm font-semibold">{pub.year}</span>
                   </div>
                   <p className="text-sm text-primary mb-3">{pub.type}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{pub.description}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{pub.description}</p>
+                  {pub.url && (
+                    <a href={pub.url} target="_blank" rel="noopener noreferrer"
+                      onClick={(e) => { e.stopPropagation(); window.open(pub.url, '_blank', 'noopener,noreferrer'); }}
+                      className="relative z-50 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-primary/30 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300 cursor-pointer pointer-events-auto">
+                      <ExternalLink className="w-4 h-4" />View on CRAN
+                    </a>
+                  )}
                 </SpotlightCard>
               </motion.div>
             ))}

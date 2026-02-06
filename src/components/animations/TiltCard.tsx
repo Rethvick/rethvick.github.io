@@ -30,9 +30,9 @@ const TiltCard = ({ children, className = "", tiltAmount = 15, perspective = 100
       style={{ perspective, transformStyle: "preserve-3d" }}
       animate={{ scale: isHovered ? scale : 1 }}
       transition={{ scale: { duration: 0.2 } }}>
-      <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }} className="w-full h-full">
+      <motion.div style={{ rotateX, rotateY }} className="w-full h-full relative">
         {children}
-        <motion.div className="absolute inset-0 pointer-events-none rounded-[inherit] overflow-hidden"
+        <motion.div className="absolute inset-0 pointer-events-none rounded-[inherit] overflow-hidden z-0"
           style={{ opacity: isHovered ? glareOpacity : 0 }}>
           <motion.div className="absolute w-[200%] h-[200%]"
             style={{ background: "radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, transparent 50%)", left: glareX, top: glareY, transform: "translate(-50%, -50%)" }} />

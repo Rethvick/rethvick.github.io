@@ -92,7 +92,8 @@ export const Contact = () => {
                 {socialLinks.map((link, index) => (
                   <MagneticButton key={index} strength={0.3}>
                     <a href={link.href} target="_blank" rel="noopener noreferrer"
-                      className="p-4 glass rounded-xl hover:scale-110 transition-all duration-300 hover:glow-primary group">
+                      // --- FIXED BUTTONS: Added flex centering and fixed width/height ---
+                      className="flex items-center justify-center w-14 h-14 p-4 glass rounded-xl hover:scale-110 transition-all duration-300 hover:glow-primary group">
                       <link.icon className="w-6 h-6 group-hover:text-primary transition-colors" />
                     </a>
                   </MagneticButton>

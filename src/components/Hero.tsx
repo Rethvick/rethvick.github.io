@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, Phone, ArrowDown } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, ArrowDown, Download } from "lucide-react";
 import { GradientText, TypingText, MagneticButton } from "@/components/animations";
 import heroPortrait from "@/assets/hero-portrait.jpg";
 
@@ -110,14 +110,30 @@ export const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
             >
+              {/* Download Resume Button */}
+              <MagneticButton strength={0.3}>
+                <a
+                  href="https://drive.google.com/file/d/1l97iXV8jhB45ICQ9URAyQRf0mP6sD3mt/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center h-11 px-7 text-sm font-semibold rounded-lg border border-primary/40 text-foreground bg-white/5 hover:bg-primary/10 hover:border-primary transition-all hover:scale-[1.03] backdrop-blur-sm gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  Download Resume
+                </a>
+              </MagneticButton>
+
+              {/* View My Work Button (Now Transparent) */}
               <MagneticButton strength={0.3}>
                 <button
                   onClick={() => scrollToSection("projects")}
-                  className="inline-flex items-center justify-center h-11 px-7 text-sm font-semibold rounded-lg gradient-primary text-primary-foreground hover:opacity-90 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/25"
+                  className="inline-flex items-center justify-center h-11 px-7 text-sm font-semibold rounded-lg border border-primary/40 text-foreground bg-white/5 hover:bg-primary/10 hover:border-primary transition-all hover:scale-[1.03] backdrop-blur-sm"
                 >
                   View My Work
                 </button>
               </MagneticButton>
+              
+              {/* Contact Me Button */}
               <MagneticButton strength={0.3}>
                 <button
                   onClick={() => scrollToSection("contact")}
@@ -140,7 +156,7 @@ export const Hero = () => {
                     href={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className="p-3 glass rounded-full hover:bg-primary/20 transition-all hover:scale-110"
+                    className="flex items-center justify-center w-12 h-12 p-3 glass rounded-full hover:bg-primary/20 transition-all hover:scale-110"
                     aria-label={link.label}
                   >
                     <link.icon className="w-5 h-5" />
